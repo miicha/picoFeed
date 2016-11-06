@@ -62,7 +62,7 @@ class RuleParser implements ParserInterface
     /**
      * Fetch content based on Xpath rules.
      */
-    private function findContent()
+    public function findContent()
     {
         $content = '';
         if (isset($this->rules['body']) && is_array($this->rules['body'])) {
