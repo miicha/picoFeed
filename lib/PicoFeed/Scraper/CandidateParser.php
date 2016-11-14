@@ -243,9 +243,14 @@ class CandidateParser implements ParserInterface
         }
     }
 
+    /**
+     * Find link for next page of the article.
+     *
+     * @return string
+     */
     public function findNextLink()
     {
-        return false;
+        return null;
     }
 
     /**
