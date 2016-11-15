@@ -87,19 +87,16 @@ class RuleParser implements ParserInterface
      */
     public function findNextLink()
     {
-        $link = null;
-        
         if (isset($this->rules['next_page']) && is_array($this->rules['next_page'])) {
             foreach ($this->rules['next_page'] as $pattern) {
                 $nodes = $this->xpath->query($pattern);
-                // ToDo there should only be found one link to next page therefore $nodes should have one element we have to take care of
                 if ($nodes !== false && $nodes->length > 0) {
                     foreach ($nodes as $node) {
-                        $link = $node->getAttribute('href');
+                        return $node->getAttribute('href');
                     }
                 }
             }
         }
-        return $link;
+        return null;
     }
 }

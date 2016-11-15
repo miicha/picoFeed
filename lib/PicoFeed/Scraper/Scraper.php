@@ -206,7 +206,7 @@ class Scraper extends Base
     /**
      * Execute the scraper.
      */
-    public function execute($pageContent = '')
+    public function execute($pageContent = '', $recursionDepth = 0)
     {
         $this->html = '';
         $this->encoding = '';
@@ -217,12 +217,16 @@ class Scraper extends Base
         $parser = $this->getParser();
 
         if ($parser !== null) {
+            $maxRecursions = $this->config->getMaxRecursions();
+            if(!isset($maxRecursions)){
+                $maxRecursions = 25;
+            }
             $pageContent .= $parser->execute();
-            // check if there is a link to next page and recursively get content
-            if($nextLink = $parser->findNextLink()){
+            // check if there is a link to next page and recursively get content (max 25 pages)
+            if((($nextLink = $parser->findNextLink()) !== null) && $recursionDepth < $maxRecursions){
                 $nextLink = Url::resolve($nextLink,$this->url);
                 $this->setUrl($nextLink);
-                $this->execute($pageContent);
+                $this->execute($pageContent,$recursionDepth+1);
             }
             else{
                 $this->content = $pageContent;
