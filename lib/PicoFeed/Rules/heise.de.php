@@ -6,6 +6,13 @@ return array(
             'body' => array(
                 '//div[@class="meldung_wrapper"]',
                 '//div[@class="artikel_content"]',
+                '//div[@class="article-content"]',
+            ),
+            'next_page' => array(
+                '//a[@class="seite_weiter"]'
+            ),
+			'strip' => array(
+                '//nav[@class="pre-akwa-toc"]',
             ),
         ),
     ),
