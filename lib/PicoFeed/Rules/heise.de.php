@@ -7,6 +7,7 @@ return array(
                 '//div[@class="meldung_wrapper"]',
                 '//div[@class="artikel_content"]',
                 '//div[@class="article-content"]',
+		'//div[@class="article_page_text"]',
             ),
             'next_page' => array(
                 '//a[@class="seite_weiter"]'
